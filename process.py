@@ -16,7 +16,7 @@ def translate(queryString,source,target):
 
 
 def process(path,source,target):
-    with open(path,'rt',encoding='gbk',errors='ignore') as f:
+    with open(path,'rt',encoding='utf-8',errors='ignore') as f:
         data = f.read()
         f.close()
     
@@ -35,6 +35,7 @@ def process(path,source,target):
     # write the srt file translated...
     with open("Translated.srt",'xt') as f:
         f.write(srtTranslated)
+        f.write(data)
         f.close()
 
 if __name__ == "__main__":
