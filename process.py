@@ -24,7 +24,7 @@ def process(path,source,target):
 
     for k in subs:
         text = k.content
-        translation = translate(text,'en','zh-CN')
+        translation = translate(text,source,target)
 
         k.content = translation
         sys.stdout.write("Line [%d/%d] completed!\r"%(k.index,len(subs)))
