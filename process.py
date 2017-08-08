@@ -1,8 +1,8 @@
-import srt,requests,json,sys
+import srt,requests,json,sys,os
 from google.cloud import translate
 
 
-APIKey = "" #Here is your API key
+APIKey = "AIzaSyAPdRo0-dFQoKPp5GbB6FyVPIspt-ntjKU" #Here is your API key
 Url = "https://translation.googleapis.com/language/translate/v2?key="
 
 def translate(queryString,source,target):
@@ -11,11 +11,8 @@ def translate(queryString,source,target):
     translation = json.loads(response.text)["data"]["translations"][0]['translatedText']
     return translation
 
-
-
-
-
 def process(path,source,target):
+    fileName = path
     with open(path,'rt',encoding='utf-8',errors='ignore') as f:
         data = f.read()
         f.close()
@@ -29,13 +26,13 @@ def process(path,source,target):
         k.content = translation
         sys.stdout.write("Line [%d/%d] completed!\r"%(k.index,len(subs)))
         sys.stdout.flush()
-        #print("Line[%d/%d]:",k.index,"completed!")
+        
     srtTranslated = srt.compose(subs)
 
     # write the srt file translated...
-    with open("Translated.srt",'xt') as f:
-        f.write(srtTranslated)
+    with open("Translated.srt",'xt',encoding='utf-8',errors='ignore') as f:
         f.write(data)
+        f.write(srtTranslated)
         f.close()
 
 if __name__ == "__main__":
