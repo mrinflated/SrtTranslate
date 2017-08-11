@@ -2,7 +2,7 @@ import srt,requests,json,sys,os
 from google.cloud import translate
 
 
-APIKey = "AIzaSyAPdRo0-dFQoKPp5GbB6FyVPIspt-ntjKU" #Here is your API key
+APIKey = "" #Here is your API key
 Url = "https://translation.googleapis.com/language/translate/v2?key="
 
 def translate(queryString,source,target):
